@@ -37,7 +37,6 @@ public class Rock : plataformObject {
 		// Muda a direcao do movimento.
 		Vector3 newTarget = target.y == topPosition.y ? bottomPosition : topPosition;
 
-		StartCoroutine(Move(newTarget));
-		
+		StartCoroutine(Move(newTarget));		
 	}
 }
