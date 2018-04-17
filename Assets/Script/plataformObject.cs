@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class plataformObject : MonoBehaviour {
 
-	[SerializeField] private float objectSpeed = 1;
-	// Use this for initialization
-	private float resetPosition = -33.05f;
+	[SerializeField] private float objectSpeed = 1;		
+	[SerializeField] private float resetPosition = -33.05f;
+	[SerializeField] private float startPosition = 71.39f;
 	void Start () {
 		
 	}
@@ -17,7 +17,7 @@ public class plataformObject : MonoBehaviour {
 
 		// Reseta a posição da plataforma para o final da fila de plataformas.
 		if (transform.localPosition.x <= resetPosition) {
-			Vector3 newPosition = new Vector3(71.39f, transform.localPosition.y, transform.localPosition.z);
+			Vector3 newPosition = new Vector3(startPosition, transform.localPosition.y, transform.localPosition.z);
 			transform.localPosition = newPosition;
 		}
 	}
