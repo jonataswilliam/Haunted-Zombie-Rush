@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null; 
 
 	[SerializeField] private GameObject mainMenu;
+	[SerializeField] private GameObject gameOverMenu;
 
 	// Variável de controle	
 	private bool playerActive = false;
 	private bool gameOver = false;
 	private bool gameStarted = false;
+
 
 	// Encapsulamento para que playerActive possa ser lido por outras classes
 	public bool PlayerActive {
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour {
 
 	public void PlayerCollided () {
 		gameOver = true;
+		gameOverMenu.SetActive(true);
 	}
 
 	public void PlayerStartedGame () {
@@ -64,5 +67,10 @@ public class GameManager : MonoBehaviour {
 		// Desabilita o main menu acessando o Inspector
 		mainMenu.SetActive(false);
 		gameStarted = true;
+
+		if(gameOver == true) {
+			gameOverMenu.SetActive(false);
+			gameOver = false;			
+		}
 	}
 }
