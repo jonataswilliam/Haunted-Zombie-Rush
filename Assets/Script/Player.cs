@@ -31,12 +31,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown (0)) {
-			anim.Play("Jump");
-			rb.useGravity = true;
-			audioSource.PlayOneShot(sfxJump);
-			jump = true;
+		if(!GameManager.instance.GameOver) {
+			if(Input.GetMouseButtonDown (0)) {
+				GameManager.instance.PlayerStartedGame();
+				anim.Play("Jump");
+				rb.useGravity = true;
+				audioSource.PlayOneShot(sfxJump);
+				jump = true;
+			}
 		}
+		
 	}
 
 	// Sempre que utilizarmos Fisica com Rígid body, usamos o FIXED UPDATE
@@ -56,6 +60,9 @@ public class Player : MonoBehaviour {
 			rb.AddForce(new Vector2 (-50, 20), ForceMode.Impulse);
 			rb.detectCollisions = false;
 			audioSource.PlayOneShot(sfxDeath);
+
+			// Avisa para o gameManager que o player bateu em alguma coisa
+			GameManager.instance.PlayerCollided();
 		}
 	}
 }
